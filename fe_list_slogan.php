@@ -73,8 +73,6 @@ class fe_list_slogan extends Module {
             $this->Template->css = $objParams->delirius_slogan_css;
         }
 
-
-
         $arrSlogan = array();
 
         // $query = ' SELECT * FROM tl_slogan_data WHERE published = "1" ORDER BY sorting';
