@@ -28,6 +28,7 @@
  * @filesource
  */
 
+
 /**
  * Table tl_slogan_data
  */
@@ -157,10 +158,10 @@ $GLOBALS['TL_DCA']['tl_slogan_data'] = array
                 ),
                 'image' => array
                 (
-                        'label'                   => &$GLOBALS['TL_LANG']['tl_slogan_data']['image'],
+                        'label'                   => $GLOBALS['TL_LANG']['tl_slogan_data']['image'],
                         'exclude'                 => true,
                         'inputType'               => 'fileTree',
-                        'eval'            => array('files'=>true, 'fieldType'=>'radio', 'filesOnly' => true, 'extensions'=> 'jpg,jpeg,png,gif', 'path' => $GLOBALS['TL_CONFIG']['uploadPath'].'/' )
+                        'eval'                => array('files'=>true, 'fieldType'=>'radio', 'filesOnly' => true, 'extensions'=> 'jpg,jpeg,png,gif' )
                 )
         )
 );

@@ -34,7 +34,7 @@ if (!defined('TL_ROOT'))
  * Table tl_slogan_category
  */
 
-dd
+
 $GLOBALS['TL_DCA']['tl_slogan_category'] = array
     (
 // Config

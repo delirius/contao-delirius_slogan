@@ -82,6 +82,11 @@ class fe_list_slogan extends Module {
 
         $objData = $this->Database->execute($query);
         while ($objData->next()) {
+            if (is_numeric($objData->image)) {
+                $objFile = \FilesModel::findByPk($objData->image);
+                $objData->image = $objFile->path;
+            }
+
             $arrNew = array
                 (
                 'id' => trim($objData->id),
