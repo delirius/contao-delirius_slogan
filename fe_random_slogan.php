@@ -100,6 +100,7 @@ class fe_random_slogan extends Module {
                 $objFile = \FilesModel::findByPk($objData->image);
                 $objData->image = $objFile->path;
             }
+
             
             $arrNew = array
                 (
