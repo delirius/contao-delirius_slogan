@@ -1,0 +1,79 @@
+/* attention, css files are overwritten with each update */
+
+/* random */
+
+div.slogan_wrapper {
+    background: #fff;
+}
+div.slogan {
+    background-color: #333;
+    background-image: url("slogan-bg.jpg");
+    background-position: top left;
+    background-repeat: repeat-x;
+    padding: 6px;
+    height: 120px;
+
+    float:left;
+    width:300px;
+    margin: 0 6px 0 0 ;
+
+}
+
+div.slogan .slogan_title, div.slogan .slogan_text, div.slogan a {
+    color: #fff;
+}
+
+div.slogan_image {
+    float: left;
+    margin-right: 8px;
+}
+
+div.slogan .slogan_title {
+    font-family: "Palatino", "Georgia", "Baskerville", serif;
+    font-size: 24px;
+}
+
+div.slogan .slogan_text, div.slogan a {
+    font-size: 12px;
+}
+
+div.slogan .slogan_author {
+    font-size: 11px;
+    font-style: italic;
+    color: #ccc;
+}
+
+
+/* list */
+div.list_slogan_wrapper {
+    background: #fff;
+}
+
+div.list_slogan {
+    margin: 10px 0 0 0;
+    padding: 6px 0;
+    border-bottom:1px solid #ccc;
+    overflow:hidden;
+}
+
+div.list_slogan .list_slogan_title, div.list_slogan .list_slogan_text, div.list_slogan a {
+    color: #666;
+}
+
+div.list_slogan_image {
+    float: left;
+    margin-right: 12px;
+}
+
+div.list_slogan .list_slogan_title {
+    font-size: 24px;
+}
+
+div.list_slogan .list_slogan_text, div.list_slogan a {
+    font-size: 12px;
+}
+div.list_slogan .list_slogan_author {
+    font-size: 12px;
+    font-style: italic;
+    color: #999;
+}
