@@ -21,27 +21,27 @@ CREATE TABLE `tl_slogan_category` (
   `sorting` int(10) unsigned NOT NULL default '0',
   `tstamp` int(10) unsigned NOT NULL default '0',
   `published` char(1) NOT NULL default '',
-  `title` varchar(128) NULL default '',
+  `title` varchar(128) NOT NULL default '',
   PRIMARY KEY  (`id`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 
--- 
+--
 -- Table `tl_slogan_data`
--- 
+--
 
 CREATE TABLE `tl_slogan_data` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `pid` int(10) unsigned NOT NULL default '0',
   `sorting` int(10) unsigned NOT NULL default '0',
   `tstamp` int(10) unsigned NOT NULL default '0',
-  `published` char(1) NULL default '',
-  `title` varchar(255) NULL default '',
-  `author` varchar(255) NULL default '',
+  `published` char(1) NOT NULL default '',
+  `title` varchar(255) NOT NULL default '',
+  `author` varchar(255) NOT NULL default '',
   `teaser` text NULL,
   `slogan` text NULL,
-  `image` varchar(128) NULL default '',
+  `image` varchar(128) NOT NULL default '',
   PRIMARY KEY  (`id`),
   KEY `pid` (`pid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
