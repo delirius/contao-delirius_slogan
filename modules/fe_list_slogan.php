@@ -32,81 +32,94 @@ if (!defined('TL_ROOT'))
  */
 
 /**
- * Class fe_random_slogan
+ * Class fe_list_slogan
  *
  * @copyright  2010
  * @author     delirius
  * @package    Controller
  */
-class fe_random_slogan extends Module {
+class fe_list_slogan extends Module
+{
 
     /**
      * Template
      * @var string
      */
-    protected $strTemplate = 'tpl_random_slogan';
+    protected $strTemplate = 'tpl_list_slogan';
+
+    /**
+     * Display a wildcard in the back end
+     * @return string
+     */
+    public function generate()
+    {
+        if (TL_MODE == 'BE')
+        {
+            $objTemplate = new \BackendTemplate('be_wildcard');
+
+            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['slogan_liste'][0]) . ' ###';
+            $objTemplate->title = $this->headline;
+            $objTemplate->id = $this->id;
+            $objTemplate->link = $this->name;
+            $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+
+            return $objTemplate->parse();
+        }
+
+        return parent::generate();
+    }
 
     /**
      * Generate module
      */
-    protected function compile() {
+    protected function compile()
+    {
 
         $objParams = $this->Database->prepare("SELECT * FROM tl_module WHERE id=?")
                 ->limit(1)
                 ->execute($this->id);
 
 
-        //delirius_slogan_number
-        if ($objParams->delirius_slogan_number < 1) {
-            $intNumber = 1;
-        } else {
-            $intNumber = intval($objParams->delirius_slogan_number);
-        }
-
         //delirius_slogan_category
-        if ($objParams->delirius_slogan_category != '') {
+        if ($objParams->delirius_slogan_category != '')
+        {
             $arrCat = deserialize($objParams->delirius_slogan_category);
             $strAnd = ' AND b.id IN (' . implode(',', $arrCat) . ') ';
         }
 
         // template
-        if ($objParams->delirius_slogan_template == '') {
+        if ($objParams->delirius_slogan_template == '')
+        {
             $objParams->delirius_slogan_template = 'slogan_random';
         }
         $this->Template = new FrontendTemplate($objParams->delirius_slogan_template);
 
         // load css
-        if ($objParams->delirius_slogan_css != '') {
+        if ($objParams->delirius_slogan_css != '')
+        {
             $this->Template->css = $objParams->delirius_slogan_css;
-        }
-
-        //delirius_slogan_site
-        if ($objParams->delirius_slogan_site != '') {
-            $objTargetPage = $this->Database->prepare("SELECT id, alias FROM tl_page WHERE id=?")
-                    ->limit(1)
-                    ->execute($objParams->delirius_slogan_site);
-            $this->Template->redirect = $this->generateFrontendUrl($objTargetPage->row());
         }
 
         $arrSlogan = array();
 
-        //  $query = ' SELECT * FROM tl_slogan_data WHERE published = "1" ORDER BY RAND() LIMIT '.$intNumber;
-        $query = ' SELECT a.* FROM tl_slogan_data a, tl_slogan_category b WHERE a.pid=b.id ' . $strAnd . ' AND b.published = "1" AND a.published = "1" ORDER BY RAND() LIMIT ' . $intNumber;
-
+        // $query = ' SELECT * FROM tl_slogan_data WHERE published = "1" ORDER BY sorting';
+        $query = ' SELECT a.* FROM tl_slogan_data a, tl_slogan_category b WHERE a.pid=b.id ' . $strAnd . ' AND b.published = "1" AND a.published = "1" ORDER BY b.sorting,a.sorting';
 
         $objData = $this->Database->execute($query);
-        while ($objData->next()) {
-             if (is_numeric($objData->image)) {
+        while ($objData->next())
+        {
+            if (is_numeric($objData->image))
+            {
                 $objFile = \FilesModel::findByPk($objData->image);
                 $objData->image = $objFile->path;
             }
 
-            
             $arrNew = array
                 (
                 'id' => trim($objData->id),
                 'title' => trim($objData->title),
                 'teaser' => trim($objData->teaser),
+                'slogan' => trim($objData->slogan),
                 'image' => trim($objData->image),
                 'author' => trim($objData->author)
             );
