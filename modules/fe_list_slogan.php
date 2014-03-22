@@ -1,8 +1,5 @@
 <?php
 
-if (!defined('TL_ROOT'))
-    die('You can not access this file directly!');
-
 /**
  * Contao Open Source CMS
  * Copyright (C) 2005-2010 Leo Feyer
@@ -75,7 +72,7 @@ class fe_list_slogan extends Module
     protected function compile()
     {
 
-        $objParams = $this->Database->prepare("SELECT * FROM tl_module WHERE id=?")
+        $objParams = \Database::getInstance()->prepare("SELECT * FROM tl_module WHERE id=?")
                 ->limit(1)
                 ->execute($this->id);
 
@@ -108,11 +105,15 @@ class fe_list_slogan extends Module
         $objData = $this->Database->execute($query);
         while ($objData->next())
         {
+            $objFile = \FilesModel::findById($objData->image);
+
+            echo $objData->image;
             if (is_numeric($objData->image))
             {
                 $objFile = \FilesModel::findByPk($objData->image);
                 $objData->image = $objFile->path;
             }
+
 
             $arrNew = array
                 (

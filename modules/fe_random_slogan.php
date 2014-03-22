@@ -71,7 +71,7 @@ class fe_random_slogan extends Module {
      */
     protected function compile() {
 
-        $objParams = $this->Database->prepare("SELECT * FROM tl_module WHERE id=?")
+        $objParams = \Database::getInstance()->prepare("SELECT * FROM tl_module WHERE id=?")
                 ->limit(1)
                 ->execute($this->id);
 
@@ -102,7 +102,7 @@ class fe_random_slogan extends Module {
 
         //delirius_slogan_site
         if ($objParams->delirius_slogan_site != '') {
-            $objTargetPage = $this->Database->prepare("SELECT id, alias FROM tl_page WHERE id=?")
+            $objTargetPage = \Database::getInstance()->prepare("SELECT id, alias FROM tl_page WHERE id=?")
                     ->limit(1)
                     ->execute($objParams->delirius_slogan_site);
             $this->Template->redirect = $this->generateFrontendUrl($objTargetPage->row());
@@ -116,18 +116,31 @@ class fe_random_slogan extends Module {
 
         $objData = $this->Database->execute($query);
         while ($objData->next()) {
-             if (is_numeric($objData->image)) {
-                $objFile = \FilesModel::findByPk($objData->image);
-                $objData->image = $objFile->path;
-            }
 
+            $objFile = \FilesModel::findById($objData->image);
+
+
+
+
+            /*
+            	$strCover = '';
+			$objCover = \FilesModel::findByPk($objCds->cover);
+
+			// Add cover image
+			if ($objCover !== null)
+			{
+				$strCover = \Image::getHtml(\Image::get($objCover->path, '100', '100', 'center_center'));
+			}
+
+
+                        */
 
             $arrNew = array
                 (
                 'id' => trim($objData->id),
                 'title' => trim($objData->title),
                 'teaser' => trim($objData->teaser),
-                'image' => trim($objData->image),
+                'image' => trim($objFile->path),
                 'author' => trim($objData->author)
             );
 
