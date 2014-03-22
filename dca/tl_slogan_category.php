@@ -33,8 +33,6 @@ if (!defined('TL_ROOT'))
 /**
  * Table tl_slogan_category
  */
-
-
 $GLOBALS['TL_DCA']['tl_slogan_category'] = array
     (
 // Config
@@ -124,7 +122,8 @@ $GLOBALS['TL_DCA']['tl_slogan_category'] = array
             'exclude' => true,
             'inputType' => 'checkbox',
             'default' => '1',
-            'eval' => array('mandatory' => false, 'maxlength' => 255)
+            'eval' => array('mandatory' => false, 'maxlength' => 255),
+            'sql' => "char(1) NOT NULL default ''"
         ),
         'title' => array
             (
@@ -134,7 +133,8 @@ $GLOBALS['TL_DCA']['tl_slogan_category'] = array
             'search' => true,
             'sorting' => true,
             'filter' => true,
-            'eval' => array('mandatory' => true, 'maxlength' => 255)
+            'eval' => array('mandatory' => true, 'maxlength' => 255),
+            'sql' => "varchar(128) NOT NULL default ''"
         )
     )
 );
