@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
@@ -60,7 +60,7 @@
 $GLOBALS['BE_MOD']['content']['slogan_module'] = array
 (
     'tables' => array('tl_slogan_category', 'tl_slogan_data'),
-    'icon'   => 'system/modules/delirius_slogan/html/icon.png'
+    'icon'   => 'system/modules/delirius_slogan/assets/icon.png'
 );
 
 /**

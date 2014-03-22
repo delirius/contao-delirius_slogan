@@ -1,8 +1,5 @@
 <?php
 
-if (!defined('TL_ROOT'))
-    die('You can not access this file directly!');
-
 /**
  * Contao Open Source CMS
  * Copyright (C) 2005-2010 Leo Feyer
@@ -41,6 +38,14 @@ $GLOBALS['TL_DCA']['tl_slogan_category'] = array
         'dataContainer' => 'Table',
         'ctable' => array('tl_slogan_data'),
         'label' => &$GLOBALS['TL_LANG']['tl_slogan_category']['category'],
+        'sql' => array
+            (
+            'keys' => array
+                (
+                'id' => 'primary',
+                'pid' => 'index'
+            )
+        )
     ),
 // List
     'list' => array
@@ -116,6 +121,22 @@ $GLOBALS['TL_DCA']['tl_slogan_category'] = array
 // Fields
     'fields' => array
         (
+        'id' => array
+            (
+            'sql' => "int(10) unsigned NOT NULL auto_increment"
+        ),
+        'pid' => array
+            (
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
+        'sorting' => array
+            (
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
+        'tstamp' => array
+            (
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
         'published' => array
             (
             'label' => &$GLOBALS['TL_LANG']['tl_slogan_category']['published'],

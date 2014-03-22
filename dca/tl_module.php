@@ -1,8 +1,5 @@
 <?php
 
-if (!defined('TL_ROOT'))
-    die('You can not access this file directly!');
-
 /**
  * TYPOlight webCMS
  * Copyright (C) 2005 Leo Feyer
@@ -46,7 +43,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_category'] = array
     'exclude' => true,
     'inputType' => 'checkbox',
     'foreignKey' => 'tl_slogan_category.title',
-    'eval' => array('multiple' => true, 'mandatory' => false)
+    'eval' => array('multiple' => true, 'mandatory' => false),
+    'sql' => "text NULL"
 );
 
 
@@ -55,7 +53,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_number'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_number'],
     'exclude' => true,
     'inputType' => 'text',
-    'eval' => array('mandatory' => true, 'maxlength' => 10)
+    'eval' => array('mandatory' => true, 'maxlength' => 10),
+    'sql' => "int(10) unsigned NOT NULL default '0'"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_site'] = array
@@ -63,7 +62,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_site'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_site'],
     'exclude' => true,
     'inputType' => 'pageTree',
-    'eval' => array('fieldType' => 'radio', 'tl_class' => 'clr')
+    'eval' => array('fieldType' => 'radio', 'tl_class' => 'clr'),
+    'sql' => "text NULL"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_css'] = array
@@ -73,7 +73,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_css'] = array
     'inputType' => 'select',
     'options' => array('slogan-default', 'slogan-tableless-default'),
     'default' => '1',
-    'eval' => array('mandatory' => false, 'includeBlankOption' => true)
+    'eval' => array('mandatory' => false, 'includeBlankOption' => true),
+    'sql' => "varchar(255) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_template'] = array
     (
@@ -82,19 +83,20 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_template'] = array
     'exclude' => true,
     'inputType' => 'select',
     'options_callback' => array('tl_module_slogan', 'getTemplates'),
+    'sql' => "varchar(255) NOT NULL default ''"
 );
 
-class tl_module_slogan extends Backend {
+class tl_module_slogan extends Backend
+{
 
     /**
      * Return all event templates as array
      * @param object
      * @return array
      */
-    public function getTemplates(DataContainer $dc) {
+    public function getTemplates(DataContainer $dc)
+    {
         return $this->getTemplateGroup('slogan_', $dc->activeRecord->pid);
     }
 
 }
-
-?>
