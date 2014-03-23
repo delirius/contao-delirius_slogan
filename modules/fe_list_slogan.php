@@ -76,6 +76,36 @@ class fe_list_slogan extends Module
                 ->limit(1)
                 ->execute($this->id);
 
+        $imageSize = deserialize($objParams->sloganImageSize);
+
+        //delirius_slogan_fields
+        if ($objParams->delirius_slogan_fields != '')
+        {
+            $arrFields = deserialize($objParams->delirius_slogan_fields);
+        }
+
+                //delirius_slogan_order
+        if ($objParams->delirius_slogan_number > 0)
+        {
+
+            $strLimit = ' LIMIT '.$objParams->delirius_slogan_number;
+        }
+        else
+        {
+            $strLimit = '';
+
+        }
+
+
+        //delirius_slogan_order
+        if ($objParams->delirius_slogan_order === 'random')
+        {
+            $strOrder = ' RAND()';
+        }
+        else
+        {
+            $strOrder = ' b.sorting,a.sorting';
+        }
 
         //delirius_slogan_category
         if ($objParams->delirius_slogan_category != '')
@@ -99,21 +129,24 @@ class fe_list_slogan extends Module
 
         $arrSlogan = array();
 
-        // $query = ' SELECT * FROM tl_slogan_data WHERE published = "1" ORDER BY sorting';
-        $query = ' SELECT a.* FROM tl_slogan_data a, tl_slogan_category b WHERE a.pid=b.id ' . $strAnd . ' AND b.published = "1" AND a.published = "1" ORDER BY b.sorting,a.sorting';
+        $query = ' SELECT ' . implode(',', $arrFields) . ' FROM tl_slogan_data a, tl_slogan_category b WHERE a.pid=b.id ' . $strAnd . ' AND a.published = ? ORDER BY '.$strOrder.$strLimit;
 
-        $objData = $this->Database->execute($query);
+
+
+        $objData = \Database::getInstance()->prepare($query)->execute(1);
         while ($objData->next())
         {
             $objFile = \FilesModel::findById($objData->image);
-
-            echo $objData->image;
-            if (is_numeric($objData->image))
+            if ($imageSize)
             {
-                $objFile = \FilesModel::findByPk($objData->image);
-                $objData->image = $objFile->path;
+                $imageSrc = $this->getImage($objFile->path, $imageSize[0], $imageSize[1], $imageSize[2]);
+                $imagesize = ' width="' . $imageSize[0] . '" height="' . $imageSize[1] . '"';
             }
-
+            else
+            {
+                $imageSrc = $objFile->path;
+                $imagesize = '';
+            }
 
             $arrNew = array
                 (
@@ -121,7 +154,8 @@ class fe_list_slogan extends Module
                 'title' => trim($objData->title),
                 'teaser' => trim($objData->teaser),
                 'slogan' => trim($objData->slogan),
-                'image' => trim($objData->image),
+                'image' => $imageSrc,
+                'imageSize' => $imagesize,
                 'author' => trim($objData->author)
             );
 

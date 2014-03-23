@@ -111,7 +111,7 @@ $GLOBALS['TL_DCA']['tl_slogan_category'] = array
     'palettes' => array
         (
         '__selector__' => array(''),
-        'default' => '{slogan_label},published,title;'
+        'default' => '{slogan_label},title;'
     ),
 // Subpalettes
     'subpalettes' => array
@@ -136,15 +136,6 @@ $GLOBALS['TL_DCA']['tl_slogan_category'] = array
         'tstamp' => array
             (
             'sql' => "int(10) unsigned NOT NULL default '0'"
-        ),
-        'published' => array
-            (
-            'label' => &$GLOBALS['TL_LANG']['tl_slogan_category']['published'],
-            'exclude' => true,
-            'inputType' => 'checkbox',
-            'default' => '1',
-            'eval' => array('mandatory' => false, 'maxlength' => 255),
-            'sql' => "char(1) NOT NULL default ''"
         ),
         'title' => array
             (

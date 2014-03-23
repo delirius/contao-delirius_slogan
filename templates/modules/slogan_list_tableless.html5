@@ -1,15 +1,9 @@
 <?php
 if ($this->css) {
-    $GLOBALS['TL_CSS'][] = 'system/modules/delirius_slogan/html/' . $this->css . '.css';
+    $GLOBALS['TL_CSS'][] = 'system/modules/delirius_slogan/assets/' . $this->css . '.css';
 }
 ?>
 
-<?php
-$width = "200";/** * new width */
-$height = "190";/** * new height */
-$mode = 'proportional';/** * modes available: crop, proportional, box */
-$target = null;/** * target for new images default = null (system/html/) */
-?>
 
 <section class="<?php echo $this->class; ?>"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
 
@@ -24,7 +18,12 @@ $target = null;/** * target for new images default = null (system/html/) */
 
             if ($val['image']) {
                 echo '<div class="list_slogan_image">';
-                echo '<img src="' . $this->getImage($val['image'], $width, $height, $mode, $target) . '" />';
+                echo '<img src="' . $val['image'] . '"'.$val['imageSize'].'>';
+                echo '</div>';
+            }
+             if ($val['imageSrc']) {
+                echo '<div class="list_slogan_image">';
+                echo '<img src="' . $val['imageSrc'] . '"'.$val['imageSize'].'>';
                 echo '</div>';
             }
             if ($val['slogan'] != '') {
