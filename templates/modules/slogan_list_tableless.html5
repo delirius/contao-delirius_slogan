@@ -9,6 +9,7 @@ if ($this->css)
 
     <div class="slogan_wrapper">
         <?php foreach ($this->slogan as $val): ?>
+       
             <?php if ($val['categorytitle'] !== '' && $val['categorytitle'] !== $temp): ?>
                 <div class="slogan">
                     <span class="slogan_categorytitle"><?php echo $val['categorytitle']; ?></span>

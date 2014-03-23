@@ -131,16 +131,20 @@ class fe_list_slogan extends Module
         $objData = \Database::getInstance()->prepare($query)->execute(1);
         while ($objData->next())
         {
-            $objFile = \FilesModel::findById($objData->image);
-            if ($imageSize)
+            $imageSrc = '';
+            if ($objData->image)
             {
-                $imageSrc = $this->getImage($objFile->path, $imageSize[0], $imageSize[1], $imageSize[2]);
-                $imagesize = ' width="' . $imageSize[0] . '" height="' . $imageSize[1] . '"';
-            }
-            else
-            {
-                $imageSrc = $objFile->path;
-                $imagesize = '';
+                $objFile = \FilesModel::findById($objData->image);
+                if ($imageSize)
+                {
+                    $imageSrc = $this->getImage($objFile->path, $imageSize[0], $imageSize[1], $imageSize[2]);
+                    $imagesize = ' width="' . $imageSize[0] . '" height="' . $imageSize[1] . '"';
+                }
+                else
+                {
+                    $imageSrc = $objFile->path;
+                    $imagesize = '';
+                }
             }
 
             $arrNew = array
