@@ -34,8 +34,8 @@
  */
 $GLOBALS['TL_LANG']['tl_slogan_data']['published'] = array('Veröffentlicht', '');
 $GLOBALS['TL_LANG']['tl_slogan_data']['title'] = array('Titel', '');
-$GLOBALS['TL_LANG']['tl_slogan_data']['teaser'] = array('Teaser (Wird im Modul "Slogan Zufall" verwendet)', '');
-$GLOBALS['TL_LANG']['tl_slogan_data']['slogan'] = array('Slogan (Wird im Modul "Slogan Liste" verwendet)', '');
+$GLOBALS['TL_LANG']['tl_slogan_data']['teaser'] = array('Teaser', '');
+$GLOBALS['TL_LANG']['tl_slogan_data']['slogan'] = array('Slogan', '');
 $GLOBALS['TL_LANG']['tl_slogan_data']['author'] = array('Autor', '');
 $GLOBALS['TL_LANG']['tl_slogan_data']['image'] = array('Bild', '');
 $GLOBALS['TL_LANG']['tl_slogan_data']['categorytitle'] = array('Titel Kategorie', '');

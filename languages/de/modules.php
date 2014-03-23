@@ -53,7 +53,7 @@ $GLOBALS['TL_LANG']['tl_module']['order_random']     = 'Zufall';
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_number'] = array('Anzahl Slogans','');
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_category'] = array('Slogan Kategorien','');
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_site'] = array('Verlinkung zu Sloganliste','');
-$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_css'] = array('Standard CSS laden','system/modules/delirius_slogan/html/');
+$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_css'] = array('Standard CSS laden','system/modules/delirius_slogan/assets/');
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_template'] = array('Template','');
 
 ?>

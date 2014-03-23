@@ -105,7 +105,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_css'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_css'],
     'exclude' => true,
     'inputType' => 'select',
-    'options' => array('slogan-default', 'slogan-tableless-default'),
+    'options' => array('slogan-tableless-default'),
     'default' => '1',
     'eval' => array('mandatory' => false, 'includeBlankOption' => true),
     'sql' => "varchar(255) NOT NULL default ''"
@@ -113,7 +113,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_css'] = array
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_template'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_template'],
-    'default' => 'slogan_standard',
+    'default' => 'slogan_list_tableless',
     'exclude' => true,
     'inputType' => 'select',
     'options_callback' => array('tl_module_slogan', 'getTemplates'),
@@ -138,7 +138,7 @@ class tl_module_slogan extends Backend
         $this->loadLanguageFile('tl_slogan_data');
 
         $arrFields = array();
-        $arrFields['b.title'] = $GLOBALS['TL_LANG']['tl_slogan_data']['categorytitle'][0];
+        $arrFields['b.title as categorytitle'] = $GLOBALS['TL_LANG']['tl_slogan_data']['categorytitle'][0];
         $arrFields['a.title'] = $GLOBALS['TL_LANG']['tl_slogan_data']['title'][0];
         $arrFields['a.author'] = $GLOBALS['TL_LANG']['tl_slogan_data']['author'][0];
         $arrFields['a.teaser'] = $GLOBALS['TL_LANG']['tl_slogan_data']['teaser'][0];

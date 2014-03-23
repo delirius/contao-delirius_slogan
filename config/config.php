@@ -84,8 +84,7 @@ $GLOBALS['BE_MOD']['content']['slogan_module'] = array
 
 array_insert($GLOBALS['FE_MOD']['slogan_module'], 0, array
 (
-    'slogan_liste'	=> 'fe_list_slogan',
-    'slogan_random'	=> 'fe_random_slogan'
+    'slogan_liste'	=> 'fe_list_slogan'
 ));
 
 /**

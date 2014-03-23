@@ -76,28 +76,37 @@ class fe_list_slogan extends Module
                 ->limit(1)
                 ->execute($this->id);
 
+        // template
+        if ($objParams->delirius_slogan_template === '')
+        {
+            $objParams->delirius_slogan_template = 'slogan_list_tableless';
+        }
+        $this->Template = new FrontendTemplate($objParams->delirius_slogan_template);
+
+        // load css
+        if ($objParams->delirius_slogan_css !== '')
+        {
+            $this->Template->css = $objParams->delirius_slogan_css;
+        }
+
+
         $imageSize = deserialize($objParams->sloganImageSize);
 
-        //delirius_slogan_fields
         if ($objParams->delirius_slogan_fields != '')
         {
             $arrFields = deserialize($objParams->delirius_slogan_fields);
         }
 
-                //delirius_slogan_order
         if ($objParams->delirius_slogan_number > 0)
         {
 
-            $strLimit = ' LIMIT '.$objParams->delirius_slogan_number;
+            $strLimit = ' LIMIT ' . $objParams->delirius_slogan_number;
         }
         else
         {
             $strLimit = '';
-
         }
 
-
-        //delirius_slogan_order
         if ($objParams->delirius_slogan_order === 'random')
         {
             $strOrder = ' RAND()';
@@ -107,31 +116,17 @@ class fe_list_slogan extends Module
             $strOrder = ' b.sorting,a.sorting';
         }
 
-        //delirius_slogan_category
         if ($objParams->delirius_slogan_category != '')
         {
             $arrCat = deserialize($objParams->delirius_slogan_category);
             $strAnd = ' AND b.id IN (' . implode(',', $arrCat) . ') ';
         }
 
-        // template
-        if ($objParams->delirius_slogan_template == '')
-        {
-            $objParams->delirius_slogan_template = 'slogan_random';
-        }
-        $this->Template = new FrontendTemplate($objParams->delirius_slogan_template);
 
-        // load css
-        if ($objParams->delirius_slogan_css != '')
-        {
-            $this->Template->css = $objParams->delirius_slogan_css;
-        }
 
         $arrSlogan = array();
 
-        $query = ' SELECT ' . implode(',', $arrFields) . ' FROM tl_slogan_data a, tl_slogan_category b WHERE a.pid=b.id ' . $strAnd . ' AND a.published = ? ORDER BY '.$strOrder.$strLimit;
-
-
+        $query = ' SELECT ' . implode(',', $arrFields) . ' FROM tl_slogan_data a, tl_slogan_category b WHERE a.pid=b.id ' . $strAnd . ' AND a.published = ? ORDER BY ' . $strOrder . $strLimit;
 
         $objData = \Database::getInstance()->prepare($query)->execute(1);
         while ($objData->next())
@@ -151,6 +146,7 @@ class fe_list_slogan extends Module
             $arrNew = array
                 (
                 'id' => trim($objData->id),
+                'categorytitle' => trim($objData->categorytitle),
                 'title' => trim($objData->title),
                 'teaser' => trim($objData->teaser),
                 'slogan' => trim($objData->slogan),
