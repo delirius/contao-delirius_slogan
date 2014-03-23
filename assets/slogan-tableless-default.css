@@ -3,7 +3,7 @@
 div.slogan_wrapper {
     background: #fff;
 }
-div.slogan {
+div.slogan_item {
     background-color: #333;
     background-image: url("slogan-bg.jpg");
     background-position: top left;
@@ -21,7 +21,7 @@ div.slogan {
 
 }
 
-div.slogan .slogan_title, div.slogan .slogan_teaser, div.slogan .slogan_slogan, div.slogan a {
+div.slogan_item .slogan_title, div.slogan_item .slogan_teaser, div.slogan_item .slogan_slogan, div.slogan_item a {
     color: #fff;
 }
 
@@ -30,18 +30,18 @@ div.slogan_image {
     margin-right: 10px;
 }
 
-div.slogan .slogan_title {
+div.slogan_item .slogan_title {
     font-family: 'Palatino', 'Georgia', 'Baskerville', serif;
     font-size: 24px;
     display:block;
     padding-top:2px;
 }
 
-div.slogan .slogan_slogan, div.slogan a {
+div.slogan_item .slogan_slogan, div.slogan_item a {
     font-size: 12px;
 }
 
-div.slogan .slogan_author {
+div.slogan_item .slogan_author {
     font-size: 11px;
     font-style: italic;
     color: #ccc;

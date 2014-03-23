@@ -9,7 +9,7 @@ if ($this->css)
 
     <div class="slogan_wrapper">
         <?php foreach ($this->slogan as $val): ?>
-       
+
             <?php if ($val['categorytitle'] !== '' && $val['categorytitle'] !== $temp): ?>
                 <div class="slogan">
                     <span class="slogan_categorytitle"><?php echo $val['categorytitle']; ?></span>
@@ -17,7 +17,7 @@ if ($this->css)
                 <?php $temp = $val['categorytitle']; ?>
             <?php endif; ?>
 
-            <div class="slogan">
+            <div class="slogan_item">
                 <?php if ($val['image'] !== ''): ?>
                     <div class="slogan_image">
                         <img src="<?php echo $val['image']; ?>"<?php echo $val['imageSize']; ?>>

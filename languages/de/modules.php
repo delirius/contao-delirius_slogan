@@ -47,11 +47,15 @@ $GLOBALS['TL_LANG']['FMD']['slogan_liste'] = array('Slogan Auflistung', '');
 
 $GLOBALS['TL_LANG']['tl_module']['slogan_legend']     = 'Optionen';
 $GLOBALS['TL_LANG']['tl_module']['design_legend']     = 'Design';
-$GLOBALS['TL_LANG']['tl_module']['order_sorting']     = 'Sortierung';
+$GLOBALS['TL_LANG']['tl_module']['order_sorting']     = 'Reihenfolge';
 $GLOBALS['TL_LANG']['tl_module']['order_random']     = 'Zufall';
 
-$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_number'] = array('Anzahl Slogans','');
+
+$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_number'] = array('Anzahl Slogans','Bei 0 werden alle ausgelistet');
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_category'] = array('Slogan Kategorien','');
+$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_order'] = array('Sortierung','');
+$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_fields'] = array('Felder','');
+$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_imagesize'] = array('Bildgrösse und Ausschnitt','');
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_site'] = array('Verlinkung zu Sloganliste','');
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_css'] = array('Standard CSS laden','system/modules/delirius_slogan/assets/');
 $GLOBALS['TL_LANG']['tl_module']['delirius_slogan_template'] = array('Template','');

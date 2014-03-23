@@ -33,7 +33,7 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_slogan_data']['published'] = array('Veröffentlicht', '');
-$GLOBALS['TL_LANG']['tl_slogan_data']['title'] = array('Titel', '');
+$GLOBALS['TL_LANG']['tl_slogan_data']['title'] = array('Titel Slogan', '');
 $GLOBALS['TL_LANG']['tl_slogan_data']['teaser'] = array('Teaser', '');
 $GLOBALS['TL_LANG']['tl_slogan_data']['slogan'] = array('Slogan', '');
 $GLOBALS['TL_LANG']['tl_slogan_data']['author'] = array('Autor', '');

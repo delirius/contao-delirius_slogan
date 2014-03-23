@@ -90,7 +90,7 @@ class fe_list_slogan extends Module
         }
 
 
-        $imageSize = deserialize($objParams->sloganImageSize);
+        $imageSize = deserialize($objParams->delirius_slogan_imagesize);
 
         if ($objParams->delirius_slogan_fields != '')
         {
