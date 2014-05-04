@@ -1,5 +1,4 @@
 contao-delirius_slogan
-master
 ======================
 
-master 
+master for Contao >= 3.2
