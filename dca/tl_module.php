@@ -1,8 +1,5 @@
 <?php
 
-if (!defined('TL_ROOT'))
-    die('You can not access this file directly!');
-
 /**
  * TYPOlight webCMS
  * Copyright (C) 2005 Leo Feyer
@@ -31,8 +28,7 @@ if (!defined('TL_ROOT'))
 /**
  * Add palettes to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['slogan_random'] = '{title_legend},name,type;{slogan_legend},delirius_slogan_number,delirius_slogan_category,delirius_slogan_site;{design_legend},delirius_slogan_template,delirius_slogan_css;';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['slogan_liste'] = '{title_legend},name,type;{slogan_legend},delirius_slogan_category;{design_legend},delirius_slogan_template,delirius_slogan_css;';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['slogan_liste'] = '{title_legend},name,type;{slogan_legend},delirius_slogan_category,delirius_slogan_fields,delirius_slogan_number,delirius_slogan_order;{design_legend},delirius_slogan_imagesize,delirius_slogan_template,delirius_slogan_css;';
 
 
 
@@ -44,9 +40,20 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_category'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_category'],
     'exclude' => true,
-    'inputType' => 'checkbox',
+    'inputType' => 'checkboxWizard',
     'foreignKey' => 'tl_slogan_category.title',
-    'eval' => array('multiple' => true, 'mandatory' => false)
+    'eval' => array('multiple' => true, 'mandatory' => true, 'tl_class' => 'm12'),
+    'sql' => "text NULL"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_fields'] = array
+    (
+    'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_fields'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'options_callback' => array('tl_module_slogan', 'getFields'),
+    'eval' => array('multiple' => true, 'mandatory' => true),
+    'sql' => "text NULL"
 );
 
 
@@ -55,7 +62,19 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_number'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_number'],
     'exclude' => true,
     'inputType' => 'text',
-    'eval' => array('mandatory' => true, 'maxlength' => 10)
+    'eval' => array('mandatory' => false, 'maxlength' => 10, 'tl_class' => 'w50'),
+    'sql' => "int(10) unsigned NOT NULL default '0'"
+);
+
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_order'] = array
+    (
+    'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_order'],
+    'exclude' => true,
+    'inputType' => 'select',
+    'options' => array('sorting' => $GLOBALS['TL_LANG']['tl_module']['order_sorting'], 'random' => $GLOBALS['TL_LANG']['tl_module']['order_random']),
+    'eval' => array('mandatory' => false, 'tl_class' => 'w50'),
+    'sql' => "text NULL"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_site'] = array
@@ -63,38 +82,68 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_site'] = array
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_site'],
     'exclude' => true,
     'inputType' => 'pageTree',
-    'eval' => array('fieldType' => 'radio', 'tl_class' => 'clr')
+    'eval' => array('fieldType' => 'radio', 'tl_class' => 'clr'),
+    'sql' => "text NULL"
 );
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_imagesize'] = array
+    (
+    'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_imagesize'],
+    'exclude' => true,
+    'inputType' => 'imageSize',
+    'options' => $GLOBALS['TL_CROP'],
+    'reference' => &$GLOBALS['TL_LANG']['MSC'],
+    'eval' => array('rgxp' => 'digit', 'nospace' => true, 'helpwizard' => true, 'tl_class' => 'long'),
+    'sql' => "varchar(64) NOT NULL default ''"
+);
+
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_css'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_css'],
     'exclude' => true,
     'inputType' => 'select',
-    'options' => array('slogan-default', 'slogan-tableless-default'),
+    'options' => array('slogan-tableless-default'),
     'default' => '1',
-    'eval' => array('mandatory' => false, 'includeBlankOption' => true)
+    'eval' => array('mandatory' => false, 'includeBlankOption' => true),
+    'sql' => "varchar(255) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_template'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_template'],
-    'default' => 'slogan_standard',
+    'default' => 'slogan_list_tableless',
     'exclude' => true,
     'inputType' => 'select',
     'options_callback' => array('tl_module_slogan', 'getTemplates'),
+    'sql' => "varchar(255) NOT NULL default ''"
 );
 
-class tl_module_slogan extends Backend {
+class tl_module_slogan extends Backend
+{
 
     /**
      * Return all event templates as array
      * @param object
      * @return array
      */
-    public function getTemplates(DataContainer $dc) {
+    public function getTemplates(DataContainer $dc)
+    {
         return $this->getTemplateGroup('slogan_', $dc->activeRecord->pid);
     }
 
-}
+    public function getFields()
+    {
+        $this->loadLanguageFile('tl_slogan_data');
 
-?>
+        $arrFields = array();
+        $arrFields['b.title as categorytitle'] = $GLOBALS['TL_LANG']['tl_slogan_data']['categorytitle'][0];
+        $arrFields['a.title'] = $GLOBALS['TL_LANG']['tl_slogan_data']['title'][0];
+        $arrFields['a.image'] = $GLOBALS['TL_LANG']['tl_slogan_data']['image'][0];
+        $arrFields['a.teaser'] = $GLOBALS['TL_LANG']['tl_slogan_data']['teaser'][0];
+        $arrFields['a.slogan'] = $GLOBALS['TL_LANG']['tl_slogan_data']['slogan'][0];
+        $arrFields['a.author'] = $GLOBALS['TL_LANG']['tl_slogan_data']['author'][0];
+
+        return $arrFields;
+    }
+
+}

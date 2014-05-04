@@ -1,0 +1,48 @@
+<?php
+if ($this->css)
+{
+    $GLOBALS['TL_CSS'][] = 'system/modules/delirius_slogan/assets/' . $this->css . '.css';
+}
+?>
+
+<section class="<?php echo $this->class; ?>"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+
+    <div class="slogan_wrapper">
+        <?php foreach ($this->slogan as $val): ?>
+
+            <?php if ($val['categorytitle'] !== '' && $val['categorytitle'] !== $temp): ?>
+                <div class="slogan">
+                    <span class="slogan_categorytitle"><?php echo $val['categorytitle']; ?></span>
+                </div>
+                <?php $temp = $val['categorytitle']; ?>
+            <?php endif; ?>
+
+            <div class="slogan_item">
+                <?php if ($val['image'] !== ''): ?>
+                    <div class="slogan_image">
+                        <img src="<?php echo $val['image']; ?>"<?php echo $val['imageSize']; ?>>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($val['title'] !== ''): ?>
+                    <span class="slogan_title"><?php echo $val['title']; ?></span>
+                <?php endif; ?>
+
+
+
+                <?php if ($val['teaser'] !== ''): ?>
+                    <span class="slogan_teaser"><?php echo $val['teaser']; ?></span>
+                <?php endif; ?>
+
+                <?php if ($val['slogan'] !== ''): ?>
+                    <span class="slogan_slogan"><?php echo $val['slogan']; ?></span>
+                <?php endif; ?>
+
+                <?php if ($val['author'] !== ''): ?>
+                    <div class="slogan_author"><?php echo $val['author']; ?></div>
+                <?php endif; ?>
+            </div>
+
+        <?php endforeach; ?>
+    </div>
+</section>

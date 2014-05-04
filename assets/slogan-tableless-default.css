@@ -1,0 +1,49 @@
+/* attention, css files are overwritten with each update */
+
+div.slogan_wrapper {
+    background: #fff;
+}
+div.slogan_item {
+    background-color: #333;
+    background-image: url("slogan-bg.jpg");
+    background-position: top left;
+    background-repeat: repeat-x;
+    padding: 10px;
+    height: 120px;
+
+    display: inline-block;
+    vertical-align: top;
+    *display:inline;
+    zoom:1;
+
+    width:240px;
+    margin: 0 6px 6px 0 ;
+
+}
+
+div.slogan_item .slogan_title, div.slogan_item .slogan_teaser, div.slogan_item .slogan_slogan, div.slogan_item a {
+    color: #fff;
+}
+
+div.slogan_image {
+    float:left;
+    margin-right: 10px;
+}
+
+div.slogan_item .slogan_title {
+    font-family: 'Palatino', 'Georgia', 'Baskerville', serif;
+    font-size: 24px;
+    display:block;
+    padding-top:2px;
+}
+
+div.slogan_item .slogan_slogan, div.slogan_item a {
+    font-size: 12px;
+}
+
+div.slogan_item .slogan_author {
+    font-size: 11px;
+    font-style: italic;
+    color: #ccc;
+}
+

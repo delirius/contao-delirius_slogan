@@ -2,9 +2,9 @@
 
 /**
  * Contao Open Source CMS
- * 
- * Copyright (C) 2005-2013 Leo Feyer
- * 
+ *
+ * Copyright (c) 2005-2014 Leo Feyer
+ *
  * @package Delirius_slogan
  * @link    https://contao.org
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
@@ -16,8 +16,8 @@
  */
 ClassLoader::addClasses(array
 (
-	'fe_random_slogan' => 'system/modules/delirius_slogan/fe_random_slogan.php',
-	'fe_list_slogan'   => 'system/modules/delirius_slogan/fe_list_slogan.php',
+	// Modules
+	'fe_list_slogan' => 'system/modules/delirius_slogan/modules/fe_list_slogan.php',
 ));
 
 
@@ -26,8 +26,5 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'slogan_list'             => 'system/modules/delirius_slogan/templates',
-	'slogan_list_tableless'   => 'system/modules/delirius_slogan/templates',
-	'slogan_random'           => 'system/modules/delirius_slogan/templates',
-	'slogan_random_tableless' => 'system/modules/delirius_slogan/templates',
+	'slogan_list_tableless' => 'system/modules/delirius_slogan/templates/modules',
 ));
