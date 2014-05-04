@@ -40,12 +40,11 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_category'] = array
     (
     'label' => &$GLOBALS['TL_LANG']['tl_module']['delirius_slogan_category'],
     'exclude' => true,
-    'inputType' => 'checkbox',
+    'inputType' => 'checkboxWizard',
     'foreignKey' => 'tl_slogan_category.title',
-    'eval' => array('multiple' => true, 'mandatory' => true, 'tl_class' => ''),
+    'eval' => array('multiple' => true, 'mandatory' => true, 'tl_class' => 'm12'),
     'sql' => "text NULL"
 );
-
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['delirius_slogan_fields'] = array
     (

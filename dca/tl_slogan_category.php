@@ -52,14 +52,14 @@ $GLOBALS['TL_DCA']['tl_slogan_category'] = array
         (
         'sorting' => array
             (
-            'mode' => 5,
+            'mode' => 0,
             'fields' => array('sorting'),
             'flag' => 1
         ),
         'label' => array
             (
             'fields' => array('title'),
-            'format' => '%s'
+            'format' => '<strong>%s</strong>'
         ),
         'global_operations' => array
             (
