@@ -1,5 +1,4 @@
 contao-delirius_slogan
-master
 ======================
 
-master 
+branch for Contao 2.11
