@@ -18,7 +18,6 @@ class updaterRunonce extends Controller
     {
         parent::__construct();
         $this->import('Database');
-        $this->import('Files');
     }
 
     public function run()
