@@ -18,6 +18,7 @@ class updaterRunonce extends Controller
     {
         parent::__construct();
         $this->import('Database');
+        $this->import('Files');
     }
 
     public function run()
@@ -32,6 +33,14 @@ class updaterRunonce extends Controller
                 {
                     Database\Updater::convertSingleField('tl_slogan_data', 'image');
                 }
+            }
+        }
+        if (version_compare(VERSION, '3.2', '>=') )
+        {
+            $strFile = 'system/modules/delirius_slogan/config/database.sql';
+            if (\Files::getInstance()->is_writeable($strFile))
+            {
+                \Files::getInstance()->delete($strFile);
             }
         }
     }
