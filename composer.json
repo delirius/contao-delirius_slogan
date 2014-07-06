@@ -21,7 +21,6 @@
         "contao-legacy/delirius_slogan": "*"
     },
     "support": {
-        "source": "https://github.com/delirius/contao-delirius_slogan",
         "issues": "https://github.com/delirius/contao-delirius_slogan/issues"
     }
 }
