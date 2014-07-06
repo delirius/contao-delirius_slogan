@@ -1,0 +1,27 @@
+{
+    "name": "delirius/contao-delirius_slogan",
+    "description": "One or more slogans are displayed randomly",
+    "keywords": ["contao", "slogan"],
+    "type": "contao-module",
+    "homepage": "http://www.delirius.ch",
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "delirius",
+            "email": "contao@delirius.ch",
+            "homepage": "http://www.delirius.ch",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "contao/core": ">=3.2,<4"
+    },
+    "replace": {
+        "contao-legacy/delirius_slogan": "*"
+    },
+    "support": {
+        "source": "https://github.com/delirius/contao-delirius_slogan",
+        "issues": "https://github.com/delirius/contao-delirius_slogan/issues"
+    }
+}
